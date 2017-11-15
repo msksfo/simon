@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<title>Simon</title>
+		<meta charset='utf-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<link type='text/css' rel='stylesheet' href='css/styles.css'>
+	</head>
+	<body>
+		<!-- why doesn't this work??????
+		<div id='audio'>
+			<audio id='green-audio'><source='green-audio.mp3'></audio>
+			
+			<audio id='red-audio'><source='red-audio.mp3'></audio>
+
+			<audio id='blue-audio'><source='blue-audio.mp3'></audio>
+
+			<audio id='yellow-audio'><source='yellow-audio.mp3'></audio>
+
+			<audio id='wrong-audio'><source='error-audio.mp3'></audio>
+
+		</div>
+		-->
+		<div id='simon-outer-container' class='simon-outer-container'>
+			<div id='colors'>
+				<div id="green" class="green color"></div>
+				<div id="red" class="red color"></div>
+				<div id="blue" class="blue color"></div>
+				<div id="yellow" class="yellow color"></div>
+			</div>
+		
+
+		 	<div id='simon-inner-container' class='simon-inner-container'>
+				<h1>Simon</h1>
+				
+				<div id='count' class='flex'>
+					<div id='count-display' class='count-display'></div>
+					<p>COUNT</p>
+				</div>
+
+				<div id='start' class='flex start'>
+					<button id='start-button'></button>
+					<p>START</p>
+				</div>
+
+				<div id='strict' class='flex strict'>
+					<button id='strict-button'></button>
+					<p>STRICT</p>
+				</div>
+				
+				<button id='on-off'><span id='off'>OFF</span>  <span id='on'>ON</span></button>
+			</div>
+	
+
+		</div>
+
+		<script src='scripts/main.js'></script>
+	</body>
+</html>

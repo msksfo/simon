@@ -1,0 +1,174 @@
+/* ========================== Containers ========================== */
+body {
+	box-sizing: border-box;
+	background-color: ivory;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.simon-outer-container {
+	border: 30px solid #4e4f50;
+	height: 600px;
+	width: 600px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.simon-inner-container {
+	background-color: ivory;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	overflow: hidden;
+	border: 20px solid #4e4f50;
+	height: 200px;
+	width: 200px;
+	padding: 2rem;
+	display: grid;
+	grid-row-gap: 8px;
+	grid-template-columns: repeat(5, 1fr);
+	border-radius: 50%;
+}
+
+/* ============================ Colored Buttons ========================*/
+
+.green {
+	float: left;
+	height: 300px;
+	width: 300px;
+	background-color: #218f4d;
+}
+
+.red {
+	float: left;
+	height: 300px;
+	width: 300px;
+	background-color: #c2181b;
+}
+
+.yellow {
+	float: left;
+	height: 300px;
+	width: 300px;
+	background-color: #d2aa0c;
+}
+
+.blue {
+	float: left;
+	height: 300px;
+	width: 300px;
+	background-color: #1f58b0;
+}
+
+/* ======================================================================*/
+
+h1 {
+	grid-column: 1 / -1;
+	text-align: center;
+	margin: 0;
+	position: relative;
+	top: 1rem;
+	font-size: 3rem;
+}
+
+/* ===================== Control buttons and displays ==================== */
+#on-off {
+	display: inline-block;
+	grid-column: 2 / 5;
+	background-color: #4e4f50;
+	color: ivory;
+	outline: none;
+	padding: 0;
+}
+
+#off {
+	display: inline-block;
+	margin-right: 4px;
+	padding: 5px;
+}
+
+#on {
+	display: inline-block;
+	margin-left: 4px;
+	padding: 5px;
+}
+
+#on:hover {
+	background-color:  #1f58b0!important;
+}
+
+#start {
+	grid-column: 3;
+}
+
+#count {
+	grid-column: 1;
+}
+
+#strict {
+	grid-column: 5;
+}
+
+#start-button {
+	background-color: rgba(255,0,0, .6);
+	outline: none;
+	padding: 10px;
+	border: 2px solid #4e4f50;
+}
+
+#strict-button {
+	background-color: rgba(241, 196, 15, .3);
+	outline: none;
+	padding: 10px;
+	border: 2px solid #4e4f50;
+}
+
+#strict-button:hover, #start-button:hover, #on:hover, #off:hover {
+	cursor: pointer;
+}
+
+.count-display{
+	height: 30px;
+	width: 50px;
+	background-color: #4b0d21;
+	color: red;
+	text-align: center;
+	font-size: 1.6rem;
+}
+
+.flex {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.flex p {
+	margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
