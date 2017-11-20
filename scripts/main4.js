@@ -112,6 +112,7 @@ function playGame(){
 	var simonColorArray = []; // list of simon's colors
 	var simonSoundArray = []; // list of simons's sounds 
 	var simonColorStringArray = []; // list of divs that can be clicked
+	var userColorArray = [];
 
 	getRandomColors(); // get 20 random colors for simon
 	
@@ -123,24 +124,23 @@ function playGame(){
 	
 	function simonsTurn(){
 		target = 0;
-		if (round === 5){ // user wins if they reach round (whatever)
-			console.log('game over');
-			return;
-		} else if (round === 1){ // if it is round 1, simon should click the first div in the array.
+		if (round === 1){ // if it is round 1, simon should click the first div in the array.
 			simonColorStringArray[0].click();
+			turn = 'user';
+			//return turn;
 		} else {
 			// otherwise simon should click through the array, stopping when the index is equal to the round.
 			index = 0; 
 			playSoundsArray(); 
+			turn = 'user';
+			//return turn;
+			
 		}
-		turn = 'user';
-		//usersTurn();
 	}
 	
 
 	colors.addEventListener('click', function(e){
 		if (turn === 'user'){
-			var userColorArray = [];
 			let userColor = e.target.id;
 
 			if (e.target.id === 'green'){ // if the green button was clicked...
@@ -161,19 +161,24 @@ function playGame(){
 				toggleColor(e.target, '#d2aa0c');
 			}
 
-			if (isMatch(userColor, simonColorArray[target]) === false){
+			userColorArray.push(userColor);
+			console.log('user color array: ', userColorArray);
+			
+			if (isMatch(userColorArray[target], simonColorArray[target]) === false){
 					// if the user guesses incorrectly...
 					console.log('WRONG!'); // let them know
-					userColor = '';
+					userColorArray = [];
 					turn = 'simon'; // make it simon's turn
 					setTimeout(simonsTurn, 2000); 
 			} else { // otherwise...
 				target ++; // increment the target
-				userColor = '';
 				if (target === round){ // if target is equal to the round...
+					userColorArray = [];
+					turn = 'simon';
 					setTimeout(nextRound, 2000); // go to the next round
 				}
 			}
+			
 
 		} else {
 			if (e.target.id === 'green'){ // if the green button was clicked...
@@ -215,22 +220,30 @@ function playGame(){
 		setTimeout(function(){ 
 			simonColorStringArray[index].click();
 			index ++;
+			console.log(index);
 			if (index < round){ 
 				playSoundsArray();
-			} 
+			} else {
+				turn = 'user';
+			}
 		}, 1000);
 	}
 
 	function nextRound(){ 
 		// user copied simon correctly, so...
 		round++; // increment the round
-		countDisplay.innerHTML = round; // update the display on the game board
-		turn = 'simon'; // set turn to simon. 
-		simonsTurn();
+		if (round === 4){
+			console.log('game over');
+		} else {
+			countDisplay.innerHTML = round; // update the display on the game board
+			//turn = 'simon'; // set turn to simon. 
+			simonsTurn();
+		}
 	}
 	
-	simonsTurn();
-	
+	if (round === 1){
+		simonsTurn();
+	}
 } // end playGame function
 
 function isMatch(a, b){ // used to check for a match between the user click and simons (at the same index)
@@ -242,6 +255,8 @@ function toggleColor(element, color){ // put back the default color of the div t
 		element.style.backgroundColor = color;
 	}, 900);
 }
+
+
 
 
 
