@@ -112,13 +112,13 @@ function playGame(){
 	var simonColorArray = []; // list of simon's colors
 	var simonSoundArray = []; // list of simons's sounds 
 	var simonColorStringArray = []; // list of divs that can be clicked
-	var userColorArray = [];
+	var userColorArray = []; // list of which colored 'buttons' the user has clicked
 
 	getRandomColors(); // get 20 random colors for simon
 	
 	var round = 1; 
 	var index = 0; // used to mark up to which index simon should 'click'
-	var target = 0; // used in usersTurn to compare user's click to simon's
+	//var target = 0; // used in usersTurn to compare user's click to simon's
 	countDisplay.innerHTML = 1; // this shows which round is currently in play
 	turn = 'simon'; // the game should begin with it being simons turn
 	
@@ -127,19 +127,16 @@ function playGame(){
 		if (round === 1){ // if it is round 1, simon should click the first div in the array.
 			simonColorStringArray[0].click();
 			turn = 'user';
-			//return turn;
 		} else {
 			// otherwise simon should click through the array, stopping when the index is equal to the round.
 			index = 0; 
 			playSoundsArray(); 
-			turn = 'user';
-			//return turn;
-			
 		}
 	}
 	
 
 	colors.addEventListener('click', function(e){
+		console.log(turn);
 		if (turn === 'user'){
 			let userColor = e.target.id;
 
@@ -167,6 +164,7 @@ function playGame(){
 			if (isMatch(userColorArray[target], simonColorArray[target]) === false){
 					// if the user guesses incorrectly...
 					console.log('WRONG!'); // let them know
+					errorSound.play();
 					userColorArray = [];
 					turn = 'simon'; // make it simon's turn
 					setTimeout(simonsTurn, 2000); 
@@ -220,7 +218,6 @@ function playGame(){
 		setTimeout(function(){ 
 			simonColorStringArray[index].click();
 			index ++;
-			console.log(index);
 			if (index < round){ 
 				playSoundsArray();
 			} else {
@@ -232,18 +229,17 @@ function playGame(){
 	function nextRound(){ 
 		// user copied simon correctly, so...
 		round++; // increment the round
-		if (round === 4){
+		if (round === 4){ // the user wins if they reach round (whatever)
 			console.log('game over');
 		} else {
 			countDisplay.innerHTML = round; // update the display on the game board
-			//turn = 'simon'; // set turn to simon. 
+			turn = 'simon'; // set turn to simon. 
 			simonsTurn();
 		}
 	}
 	
-	if (round === 1){
-		simonsTurn();
-	}
+	simonsTurn();
+	
 } // end playGame function
 
 function isMatch(a, b){ // used to check for a match between the user click and simons (at the same index)
