@@ -196,8 +196,7 @@ function simonsTurn(){
 		playSoundsArray(); 
 	}
 	simonSlicedArray = simonColorArray.slice(0, round);
-
-	console.log(simonSlicedArray);
+	//console.log(simonSlicedArray);
 }
 
 
@@ -220,7 +219,7 @@ function getRandomColors(){
 		simonColorArray.push(randomColor.id);
 		simonSoundArray.push(randomSound);
 	}
-	console.log(simonColorArray);
+	//console.log(simonColorArray);
 	//console.log(simonColorStringArray);
 }
 
@@ -240,7 +239,7 @@ function playSoundsArray(){
 function nextRound(){ 
 	// user copied simon correctly, so...
 	round++; // increment the round
-	if (round === 4){ // the user wins if they reach round (whatever)
+	if (round === 21){ // the user wins if they reach round (whatever)
 		newGame();
 	} else {
 		countDisplay.innerHTML = round; // update the display on the game board
